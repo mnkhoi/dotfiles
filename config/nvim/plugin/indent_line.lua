@@ -1,9 +1,9 @@
-return {
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {},
-  },
-}
+local helper = require 'helper'
+
+---@module "ibl"
+---@type ibl.config
+local opts = {}
+
+vim.pack.add { helper.gh 'lukas-reineke/indent-blankline.nvim' }
+
+require('ibl').setup(opts)

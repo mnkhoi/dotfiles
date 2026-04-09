@@ -29,17 +29,17 @@ local opts = {
   signature = { enabled = true },
 }
 
-vim.pack.add { {src = helper.gh 'saghen/blink.cmp', version = vim.version.range('1.x')} }
+vim.pack.add { { src = helper.gh 'saghen/blink.cmp', version = vim.version.range '1.x' } }
 vim.api.nvim_create_autocmd('VimEnter', {
   once = true,
   callback = function()
-    vim.pack.add({
-      { src = helper.gh 'L3MON4D3/LuaSnip', version = vim.version.range('v2.x')},
+    vim.pack.add {
+      { src = helper.gh 'L3MON4D3/LuaSnip', version = vim.version.range 'v2.x' },
       helper.gh 'folke/lazydev.nvim',
-    })
+    }
     require('luasnip').setup()
     require('lazydev').setup()
-  end
-}
+  end,
+})
 
 require('blink').setup(opts)
