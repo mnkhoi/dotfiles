@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -17,10 +16,10 @@
       defaultEditor = true;
     };
 
+    # Configuration is at dotfiles/config/starship.toml
     starship = {
       enable = true;
       enableZshIntegration = true;
-
     };
 
     firefox.enable = true;
@@ -45,7 +44,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    zoxide
     eza
     btop
     lm_sensors
@@ -55,6 +53,7 @@
     socat
     unzip
     unrar
+    yazi
 
     hyprpaper
     waypaper
