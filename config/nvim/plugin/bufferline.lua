@@ -1,3 +1,15 @@
+local helper = require 'helper'
+
+local opts = {
+
+      options = {
+        diagnostics = 'nvim_lsp',
+        always_show_bufferline = false,
+      },
+    }
+  
+
+
 return {
   {
     'akinsho/bufferline.nvim',
@@ -15,20 +27,27 @@ return {
       { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
     },
     opts = {
-      options = {
-        diagnostics = 'nvim_lsp',
-        always_show_bufferline = false,
-      },
     },
-    config = function(_, opts)
+    config =
+      })
+    end,
+  },
+}
+
+vim.pack.add({ helper.gh 'akinsho/bufferline.nvim' })
+
+--- Run on enter
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function()
       require('bufferline').setup(opts)
       vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
         callback = function()
           vim.schedule(function()
             pcall(nvim_bufferline)
           end)
-        end,
-      })
-    end,
-  },
-}
+        end})
+      end
+})
+
+
