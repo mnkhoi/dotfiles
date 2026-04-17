@@ -52,3 +52,5 @@ if (vim.g.colors_name or ''):find 'catppuccin' then
     highlights = require('catppuccin.special.bufferline').get_theme,
   }
 end
+
+vim.cmd.colorscheme 'catppuccin-frappe'

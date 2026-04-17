@@ -42,4 +42,4 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
-require('blink').setup(opts)
+require('blink.cmp').setup(opts)

@@ -62,4 +62,4 @@ local opts = {
 
 vim.pack.add { helper.gh 'lewis6991/gitsigns.nvim' }
 
-require('gitsigns').set(opts)
+require('gitsigns').setup(opts)

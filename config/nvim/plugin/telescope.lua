@@ -24,8 +24,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
       helper.gh 'nvim-tree/nvim-web-devicons',
     }
 
-    require('plenary').setup()
-
     require('telescope').setup {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`

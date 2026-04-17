@@ -14,11 +14,9 @@ local keymaps = {
 
 vim.pack.add { helper.gh 'kdheepak/lazygit.nvim' }
 
-vim.api.nvim_create_user_command('LazyGit', function()
+vim.api.nvim_create_user_command('VimEnter', function()
   vim.pack.add { helper.gh 'nvim-lua/plenary.nvim' }
-  require('plenary').setup()
-  require('lazygit').setup()
-end, { desc = 'Open up lazygit' })
+end, { desc = 'check to download plenary.nvim' })
 
 -- Dependencies
 
