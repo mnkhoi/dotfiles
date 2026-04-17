@@ -1,9 +1,17 @@
-return {
-  'stevearc/oil.nvim',
-  opts = {},
-  lazy = false,
-  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-  keys = {
-    { '<leader>o', '<cmd>Oil<cr>', desc = 'Oil' },
-  },
-}
+local helper = require 'helper'
+
+vim.pack.add { helper.gh 'stevearc/oil.nvim' }
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function()
+    vim.pack.add { helper.gh 'echasnovski/mini.icons' }
+    require('mini.icons').setup()
+
+    require('oil').setup()
+
+    helper.add_keymaps {
+      { 'n', '<leader>o', '<cmd>Oil<cr>', { desc = 'Oil' } },
+    }
+  end,
+})

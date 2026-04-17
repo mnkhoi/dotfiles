@@ -1,24 +1,20 @@
-return {
-  -- Main LSP Configuration
-  'neovim/nvim-lspconfig',
-  dependencies = {
-    {
-      'mason-org/mason.nvim',
-      ---@module 'mason.settings'
-      ---@type MasonSettings
-      ---@diagnostic disable-next-line: missing-fields
-      opts = {},
-    },
-    'mason-org/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+local helper = require 'helper'
 
-    -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = {} },
+vim.pack.add { helper.gh 'neovim/nvim-lspconfig' }
 
-    -- -- Allows extra capabilities provided by blink.cmp
-    -- 'saghen/blink.cmp',
-  },
-  config = function()
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function()
+    vim.pack.add {
+      helper.gh 'mason-org/mason.nvim',
+      helper.gh 'mason-org/mason-lspconfig.nvim',
+      helper.gh 'WhoIsSethDaniel/mason-tool-installer.nvim',
+      helper.gh 'j-hui/fidget.nvim',
+    }
+    require('mason').setup()
+    require('mason-lspconfig').setup {}
+    require('fidget').setup()
+
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
@@ -145,4 +141,4 @@ return {
       vim.lsp.enable(name)
     end
   end,
-}
+})

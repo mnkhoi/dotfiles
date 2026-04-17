@@ -1,6 +1,10 @@
-return { -- Collection of various small independent plugins/modules
-  'echasnovski/mini.nvim',
-  config = function()
+local helper = require 'helper'
+
+vim.pack.add { helper.gh 'echasnovski/mini.nvim' }
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function()
     -- Better Around/Inside textobjects
     --
     -- Examples:
@@ -21,4 +25,4 @@ return { -- Collection of various small independent plugins/modules
     --   return '%2l:%-2v'
     -- end
   end,
-}
+})

@@ -1,10 +1,20 @@
-return { -- Highlight, edit, and navigate code
-  'nvim-treesitter/nvim-treesitter',
-  lazy = false,
-  build = ':TSUpdate',
-  branch = 'main',
-  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-  config = function()
+local helper = require 'helper'
+
+vim.pack.add { { src = helper.gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
+
+vim.api.nvim_create_autocmd('PackChanged', {
+  pattern = 'nvim-treesitter',
+  desc = "Running ':TSBuild' after treesitter changed",
+  command = 'TSUpdate',
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function()
+    require('nvim-treesitter').setup {
+      highlights = { enable = true },
+    }
+
     local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
 
     require('nvim-treesitter').install(parsers)
@@ -45,4 +55,4 @@ return { -- Highlight, edit, and navigate code
       end,
     })
   end,
-}
+})

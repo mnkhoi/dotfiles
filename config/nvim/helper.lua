@@ -13,4 +13,11 @@ function M.add_keymaps(keymaps)
   end
 end
 
+---@param commands string[]
+function M.add_cmds(commands)
+  for _, v in ipairs(commands) do
+    vim.api.nvim_create_user_command(v, v, {})
+  end
+end
+
 return M
